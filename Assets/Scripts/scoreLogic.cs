@@ -20,6 +20,11 @@ public class scoreLogic : MonoBehaviour {
 	}
 
 	public void addToScore() {
+		score++; 
+		printScore();
+	}
 
+	public void printScore() {
+		text.text = "Score : " + score;
 	}
 }

@@ -17,4 +17,8 @@ public class projectileLogic : MonoBehaviour {
 	void moveTransformToTop() {
 		transform.Translate(0, transformSpeed, 0);
 	}
+
+	void OnBecameInvisible() {
+		Destroy(gameObject);
+	}
 }

@@ -5,22 +5,23 @@ using UnityEngine;
 public class destroyTransform : MonoBehaviour {
 
 	scoreLogic addToScore;
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+	public GameObject particleExplosion;
 
 	void OnCollisionEnter2D(Collision2D transformCollision) {
 		if (transformCollision.gameObject.tag == "Collision") {
-			Destroy (transformCollision.gameObject);
 
-			addToScore = GetComponent<scoreLogic> ();
-			addToScore.addToScore ();
+			spawnParticle(transformCollision.transform.position);
+			Destroy (transformCollision.gameObject);
+			callScoreLogic();
 		}
+	}
+
+	void callScoreLogic() {
+		addToScore = GameObject.FindGameObjectWithTag("GUI").GetComponent<scoreLogic>();
+		addToScore.addToScore ();
+	}
+
+	void spawnParticle(Vector2 tempPosition) {
+		Instantiate(particleExplosion, tempPosition, Quaternion.identity);		
 	}
 }

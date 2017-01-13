@@ -1,9 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class playerLogic : MonoBehaviour {
 
 	float maxPlayerDIstance = 29.0f;
+	float projectileCollisionOffset = 3.0f;
 
 	public float playerSpeed = 1.0f;
 	public float shootSpeed = 0.5f;
@@ -38,6 +40,12 @@ public class playerLogic : MonoBehaviour {
 	}
 
 	void spawnProjectile() {
-		Instantiate(projectile, transform.position, Quaternion.identity);
+		Instantiate(projectile, new Vector3(transform.position.x, transform.position.y + projectileCollisionOffset, 0) , Quaternion.identity);
+	}
+
+	void OnCollisionEnter2D(Collision2D collision) {
+		if (collision.gameObject.tag == "Collision") {
+			SceneManager.LoadScene("GameScene");
+		}
 	}
 }
