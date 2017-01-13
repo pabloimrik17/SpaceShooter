@@ -24,8 +24,10 @@ public class enemySpawner : MonoBehaviour {
 	}
 
 	IEnumerator spawnEnemyTimer() {
-		spawnEnemy();
-		yield return new WaitForSeconds (enemySpawnTime);
+		while (canSpwan) {
+			spawnEnemy ();
+			yield return new WaitForSeconds (enemySpawnTime);
+		}
 	}
 
 	void spawnEnemy() {
