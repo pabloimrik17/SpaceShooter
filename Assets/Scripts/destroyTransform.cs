@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class destroyTransform : MonoBehaviour {
 
+	scoreLogic addToScore;
 	// Use this for initialization
 	void Start () {
 		
@@ -17,6 +18,9 @@ public class destroyTransform : MonoBehaviour {
 	void OnCollisionEnter2D(Collision2D transformCollision) {
 		if (transformCollision.gameObject.tag == "Collision") {
 			Destroy (transformCollision.gameObject);
+
+			addToScore = GetComponent<scoreLogic> ();
+			addToScore.addToScore ();
 		}
 	}
 }
